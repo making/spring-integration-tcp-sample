@@ -1,6 +1,5 @@
 package com.example.tcpclient;
 
-import org.springframework.integration.core.MessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    private final MessagingTemplate messagingTemplate;
+    private final HelloGateway helloGateway;
 
-    public HelloController(MessagingTemplate messagingTemplate) {
-        this.messagingTemplate = messagingTemplate;
+    public HelloController(HelloGateway helloGateway) {
+        this.helloGateway = helloGateway;
     }
 
     @GetMapping(path = "{name}")
     public String hello(@PathVariable("name") String name) {
-        return this.messagingTemplate.convertSendAndReceive(name, String.class);
+        return this.helloGateway.hello(name);
     }
 }
