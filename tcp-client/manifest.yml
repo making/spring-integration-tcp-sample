@@ -1,0 +1,7 @@
+applications:
+- name: hello-tcp-client
+  path: target/tcp-client-0.0.1-SNAPSHOT.jar
+  memory: 768m
+  env:
+    TCP_CLIENT_HOST: cf-tcpapps.io
+    TCP_CLIENT_PORT: 3383
